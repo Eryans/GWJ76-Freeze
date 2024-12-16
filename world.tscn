@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://chc8nd74ie25"]
+[gd_scene load_steps=7 format=3 uid="uid://chc8nd74ie25"]
 
 [ext_resource type="Script" path="res://CameraController.cs" id="1_q2mbb"]
 [ext_resource type="PackedScene" uid="uid://b60ej4sty64oc" path="res://player.tscn" id="2_iwe2a"]
 [ext_resource type="PackedScene" uid="uid://l4jjv8eovgu3" path="res://destination_point.tscn" id="3_jkoxr"]
+[ext_resource type="PackedScene" uid="uid://dfrsk6exohr5f" path="res://gps.tscn" id="4_67rfh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f03cs"]
 albedo_color = Color(0.72549, 1, 1, 1)
@@ -53,7 +54,16 @@ margin = 3.0
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
 
 [node name="DestinationPoint" parent="." instance=ExtResource("3_jkoxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -192, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -470.709, 0, -432.283)
+
+[node name="DestinationPoint3" parent="." instance=ExtResource("3_jkoxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 424.192, 0, -290.084)
 
 [node name="DestinationPoint2" parent="." instance=ExtResource("3_jkoxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.494, 0, -0.14782)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.477, 0, 282.353)
+
+[node name="DestinationPoint4" parent="." instance=ExtResource("3_jkoxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -580.497, 0, 534.518)
+
+[node name="GPS" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_67rfh")]
+player = NodePath("../Player")

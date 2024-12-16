@@ -7,7 +7,7 @@ public partial class GameManager : Node
 	private Godot.Collections.Array<Node> destinationPoints;
 	private RandomNumberGenerator rng = new();
 
-	public event Action<DestinationPoint> DestinationPointChanged;
+	public static event Action<DestinationPoint> DestinationPointChanged;
 
 	public override void _Ready()
 	{

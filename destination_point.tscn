@@ -8,7 +8,7 @@ height = 16.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7nvo"]
 transparency = 1
-albedo_color = Color(0.994335, 0.281688, 0, 0.0823529)
+albedo_color = Color(0.996078, 0.282353, 0, 0.301961)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_do2wh"]
 radius = 8.0
