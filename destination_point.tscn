@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://l4jjv8eovgu3"]
+
+[ext_resource type="Script" path="res://DestinationPoint.cs" id="1_vg4jy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ahbc5"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7nvo"]
+transparency = 1
+albedo_color = Color(0.994335, 0.281688, 0, 0.0823529)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_do2wh"]
+radius = 8.0
+
+[node name="DestinationPoint" type="Area3D" groups=["destination_points"]]
+script = ExtResource("1_vg4jy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ahbc5")
+surface_material_override/0 = SubResource("StandardMaterial3D_x7nvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_do2wh")
