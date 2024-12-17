@@ -13,8 +13,7 @@ public partial class CameraController : Node3D
 	public override void _PhysicsProcess(double delta)
 	{
 		GlobalPosition = GlobalPosition.Lerp(Target.GlobalPosition, LerpWeight * (float)delta);
-		float rotationDirection = Input.GetAxis("camera_left", "camera_right");
+		float rotationDirection = -Input.GetAxis("camera_left", "camera_right");
 		Rotation = Rotation with { Y = Mathf.LerpAngle(Rotation.Y, Rotation.Y + rotationDirection, RotationLerpWeight * (float)delta) };
-
 	}
 }

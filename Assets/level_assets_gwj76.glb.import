@@ -105,6 +105,24 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Assets/Meshs/level_assets_gwj76_Cube_007.res"
 },
+"level_assets_gwj76_Cube_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Meshs/level_assets_gwj76_Cube_008.res"
+},
+"level_assets_gwj76_Cube_009": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Meshs/level_assets_gwj76_Cube_009.res"
+},
 "level_assets_gwj76_Cylinder": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,

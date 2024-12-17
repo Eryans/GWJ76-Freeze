@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd87lncfwh6f4"]
+
+[ext_resource type="ArrayMesh" uid="uid://ct7fulia6xodf" path="res://Assets/Meshs/level_assets_gwj76_Cube_009.res" id="1_n0uml"]
+
+[node name="SnowFloor" type="MeshInstance3D"]
+mesh = ExtResource("1_n0uml")

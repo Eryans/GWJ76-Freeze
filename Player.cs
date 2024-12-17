@@ -73,6 +73,16 @@ public partial class Player : CharacterBody3D
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
 		{
 			var collision = GetSlideCollision(i);
+			if (collision.GetCollider() is RigidBody3D rb)
+			{
+				Vector3 pushDirection = (rb.GlobalPosition - GlobalPosition + Vector3.Up).Normalized();
+				rb.ApplyTorqueImpulse(pushDirection);
+				rb.ApplyCentralImpulse(pushDirection * Acceleration / 2);
+				if (rb is Pinguin pinguin)
+				{
+					pinguin.hasBeenHit = true;
+				}
+			}
 			if (collision.GetCollider() is Node3D node)
 			{
 				if (node.IsInGroup("obstacles"))

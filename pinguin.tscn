@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://byv4tubalgumd"]
+
+[ext_resource type="Script" path="res://Pinguin.cs" id="1_72sb2"]
+[ext_resource type="PackedScene" uid="uid://bk4hwf8tmvtnu" path="res://Assets/pinguin.glb" id="1_sgfaq"]
+[ext_resource type="PackedScene" uid="uid://bbedjtxshokk4" path="res://Assets/rifle.glb" id="2_7u30l"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_etfyl"]
+height = 1.6277
+radius = 0.688046
+
+[node name="Pinguin" type="RigidBody3D"]
+script = ExtResource("1_72sb2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.830982, 0)
+shape = SubResource("CylinderShape3D_etfyl")
+
+[node name="model" parent="." instance=ExtResource("1_sgfaq")]
+
+[node name="rifle" parent="model" instance=ExtResource("2_7u30l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566718, 0.736733, 0.402019)
+
+[node name="Marker3D" type="Marker3D" parent="model/rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.05839)
+
+[editable path="model"]
