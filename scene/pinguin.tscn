@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://byv4tubalgumd"]
 
-[ext_resource type="Script" path="res://Pinguin.cs" id="1_72sb2"]
+[ext_resource type="Script" path="res://scripts/Pinguin.cs" id="1_72sb2"]
 [ext_resource type="PackedScene" uid="uid://bk4hwf8tmvtnu" path="res://Assets/pinguin.glb" id="1_sgfaq"]
 [ext_resource type="PackedScene" uid="uid://bbedjtxshokk4" path="res://Assets/rifle.glb" id="2_7u30l"]
 

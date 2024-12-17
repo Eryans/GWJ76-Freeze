@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfrsk6exohr5f"]
 
-[ext_resource type="Script" path="res://Gps.cs" id="1_icc6e"]
+[ext_resource type="Script" path="res://scripts/Gps.cs" id="1_icc6e"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_duff7"]
 size = Vector3(0.5, 2.25, 0.15)

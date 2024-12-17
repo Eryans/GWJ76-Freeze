@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://chc8nd74ie25"]
 
-[ext_resource type="Script" path="res://CameraController.cs" id="1_q2mbb"]
-[ext_resource type="PackedScene" uid="uid://b60ej4sty64oc" path="res://player.tscn" id="2_iwe2a"]
-[ext_resource type="PackedScene" uid="uid://l4jjv8eovgu3" path="res://destination_point.tscn" id="3_jkoxr"]
-[ext_resource type="PackedScene" uid="uid://dfrsk6exohr5f" path="res://gps.tscn" id="4_67rfh"]
+[ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_q2mbb"]
+[ext_resource type="PackedScene" uid="uid://b60ej4sty64oc" path="res://scene/player.tscn" id="2_iwe2a"]
+[ext_resource type="PackedScene" uid="uid://l4jjv8eovgu3" path="res://scene/destination_point.tscn" id="3_jkoxr"]
+[ext_resource type="PackedScene" uid="uid://dfrsk6exohr5f" path="res://scene/gps.tscn" id="4_67rfh"]
 [ext_resource type="PackedScene" uid="uid://cfop08qyojgcu" path="res://level/rock.tscn" id="5_v7u8p"]
 [ext_resource type="PackedScene" uid="uid://crnhbt7t3fokl" path="res://level/rock_11.tscn" id="6_chf2f"]
 [ext_resource type="PackedScene" uid="uid://bfbvv7eetotbb" path="res://level/rock_2.tscn" id="6_tyojd"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://0e6o5vqn835y" path="res://level/house.tscn" id="10_kj5oh"]
 [ext_resource type="PackedScene" uid="uid://cph44vr77ct2i" path="res://level/rock_6.tscn" id="10_lkqtk"]
 [ext_resource type="ArrayMesh" uid="uid://ct7fulia6xodf" path="res://Assets/Meshs/level_assets_gwj76_Cube_009.res" id="11_jrtpt"]
-[ext_resource type="PackedScene" uid="uid://byv4tubalgumd" path="res://pinguin.tscn" id="16_sog0b"]
+[ext_resource type="PackedScene" uid="uid://byv4tubalgumd" path="res://scene/pinguin.tscn" id="16_sog0b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f03cs"]
 albedo_color = Color(0.72549, 1, 1, 1)
