@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfop08qyojgcu"]
+
+[ext_resource type="ArrayMesh" uid="uid://17j5ny3biiqs" path="res://Assets/Meshs/level_assets_gwj76_Cube_001.res" id="1_fhfvm"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dnb1c"]
+points = PackedVector3Array(-1.57927, -0.259919, -0.0428402, -0.151043, -0.259919, 1.12762, -1.4912, 2.28637, 0.123826, -0.733493, 5.3263, -0.34796, -0.0385642, -0.259919, -1.12771, 1.38995, -0.259919, 0.0425081, -0.0629783, 2.28637, 1.29428, 0.086122, 4.71283, 0.226955, 0.376184, 5.83067, -0.686509, 0.0495008, 2.28637, -0.961283, 1.19609, 5.21661, -0.11183, 0.956891, 2.34957, 0.461426)
+
+[node name="Rock" type="MeshInstance3D"]
+mesh = ExtResource("1_fhfvm")
+skeleton = NodePath("../Rock2/StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["obstacles"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_dnb1c")

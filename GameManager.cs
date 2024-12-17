@@ -17,7 +17,7 @@ public partial class GameManager : Node
 		{
 			point.PointReachedByPlayer += OnPlayerReachedPoint;
 		}
-		SetNewDestination();
+		CallDeferred("SetNewDestination");
 	}
 	public void OnPlayerReachedPoint(DestinationPoint point)
 	{

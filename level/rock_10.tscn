@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://evq1j5fdn58w"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnd3n7iacl8au" path="res://Assets/Meshs/level_assets_gwj76_Cube_007.res" id="1_6ihck"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5g54p"]
+points = PackedVector3Array(-18.1063, 25.841, 2.26222, -9.27693, 25.1327, 7.09622, -18.1063, 25.841, -3.24442, -24.1454, 23.2989, 2.77256, -26.4329, 17.9212, 8.54525, -9.27693, 25.1327, -8.54692, 29.2894, 4.07549e-06, 8.54692, 0.259665, 21.8191, 7.09622, 20.7031, 16.53, 1.96773, 20.7142, 16.5477, -2.1133, -26.4329, 17.9212, -8.54692, -24.1454, 23.2989, -3.24442, -27.1567, 0.005063, 8.54692, 0.259665, 21.8191, -8.54692, 29.2894, 4.07549e-06, -8.54692, 24.8526, 13.7881, 1.96773, 26.5488, 8.06899, 5.94168, -2.28882e-05, 4.07549e-06, 8.54692, 25.8471, 9.98379, 5.08164, 15.432, 17.0157, 4.2082, 24.8526, 13.7881, -2.1133, 15.4265, 17.0182, -5.22721, -27.1567, 0.005063, -8.54692, 25.8471, 9.98379, -5.22721, 26.5544, 8.0614, -6.03204, -2.28882e-05, 4.07549e-06, -8.54692)
+
+[node name="Rock10" type="MeshInstance3D"]
+mesh = ExtResource("1_6ihck")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["obstacles"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_5g54p")
