@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnvauwgspnfc0"]
+
+[ext_resource type="Script" path="res://scripts/ObstacleCollider.cs" id="1_h3f81"]
+
+[node name="ObstacleCollider" type="Area3D"]
+script = ExtResource("1_h3f81")

@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b60ej4sty64oc"]
+[gd_scene load_steps=9 format=3 uid="uid://b60ej4sty64oc"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_jk703"]
-[ext_resource type="PackedScene" uid="uid://dnvauwgspnfc0" path="res://scene/hurt_box.tscn" id="2_lrwpt"]
+[ext_resource type="PackedScene" uid="uid://dnvauwgspnfc0" path="res://scene/ObstacleCollider.tscn" id="2_lrwpt"]
+[ext_resource type="Script" path="res://scripts/HurtBox.cs" id="3_hq7op"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vm1th"]
+size = Vector3(1, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iu1au"]
 size = Vector3(1, 1, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26yac"]
@@ -11,6 +15,9 @@ albedo_color = Color(0.846758, 0.264193, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_848wl"]
 albedo_color = Color(0.846758, 0.264193, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n5pfn"]
+size = Vector3(1.25, 2, 3.25)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_jk703")
@@ -20,7 +27,11 @@ BrakeForce = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 shape = SubResource("BoxShape3D_vm1th")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_lrwpt")]
+[node name="ObstacleCollider" parent="." instance=ExtResource("2_lrwpt")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+shape = SubResource("BoxShape3D_iu1au")
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -41,3 +52,10 @@ size = Vector3(1, 1, 2)
 transform = Transform3D(1, 0, 0, 0, 0.953717, -0.300706, 0, 0.300706, 0.953717, 0, -0.139006, -1.38095)
 operation = 2
 size = Vector3(1, 1.95557, 1)
+
+[node name="HurtBox" type="Area3D" parent="."]
+script = ExtResource("3_hq7op")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+shape = SubResource("BoxShape3D_n5pfn")

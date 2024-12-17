@@ -4,7 +4,7 @@ using System;
 public partial class Pinguin : RigidBody3D
 {
 	[Export]
-	public float DistanceForAggro { get; private set; } = 30f;
+	public float DistanceForAggro { get; private set; } = 45f;
 	[Export]
 	public float ShootCountdown { get; private set; } = 3f;
 	public bool hasBeenHit = false;
