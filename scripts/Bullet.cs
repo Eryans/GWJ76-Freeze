@@ -4,9 +4,10 @@ using System;
 public partial class Bullet : Area3D
 {
 	[Export]
-	public float speed = 10f;
+	public float speed = 15f;
+	public Vector3 Direction = new();
 	public override void _PhysicsProcess(double delta)
 	{
-		GlobalPosition += Vector3.Forward * speed * (float)delta;
+		GlobalPosition += Direction * speed * (float)delta;
 	}
 }

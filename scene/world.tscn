@@ -516,10 +516,10 @@ player = NodePath("../Player")
 environment = SubResource("Environment_6emew")
 
 [node name="Node3D" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6916, 0.5, -31.855)
+transform = Transform3D(-0.707107, 3.09086e-08, 0.707107, -3.09086e-08, 1, -7.462e-08, -0.707107, -7.462e-08, -0.707107, -70.2329, 0.5, -50.8853)
 
 [node name="Node3D2" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(0.831848, 0, -0.555004, 0, 1, 0, 0.555004, 0, 0.831848, -23.7395, 0.5, -31.5513)
+transform = Transform3D(-0.195758, 3.09086e-08, 0.980652, -6.71257e-08, 1, -4.49181e-08, -0.980652, -7.462e-08, -0.195758, -67.1558, 0.5, -48.2378)
 
 [node name="Node3D3" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -15.5958, 0.5, -33.9892)
+transform = Transform3D(-0.965926, 3.09086e-08, 0.258819, 1.05424e-08, 1, -8.00771e-08, -0.258819, -7.462e-08, -0.965926, -74.6382, 0.5, -52.2724)
