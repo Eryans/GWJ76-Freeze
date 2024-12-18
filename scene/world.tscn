@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://chc8nd74ie25"]
+[gd_scene load_steps=25 format=3 uid="uid://chc8nd74ie25"]
 
 [ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_q2mbb"]
 [ext_resource type="PackedScene" uid="uid://b60ej4sty64oc" path="res://scene/player.tscn" id="2_iwe2a"]
@@ -17,6 +17,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ct7fulia6xodf" path="res://Assets/Meshs/level_assets_gwj76_Cube_009.res" id="11_jrtpt"]
 [ext_resource type="PackedScene" uid="uid://byv4tubalgumd" path="res://scene/pinguin.tscn" id="16_sog0b"]
 [ext_resource type="PackedScene" uid="uid://b1o683ij6dbdh" path="res://scene/dialog_manager.tscn" id="17_lxuew"]
+[ext_resource type="Script" path="res://scripts/DialogTriggerrer.cs" id="18_5led8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f03cs"]
 albedo_color = Color(0.72549, 1, 1, 1)
@@ -49,6 +50,9 @@ sdfgi_bounce_feedback = 1.07
 adjustment_enabled = true
 adjustment_contrast = 0.9
 adjustment_saturation = 1.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_afikf"]
+radius = 3.0
 
 [node name="World" type="Node3D"]
 
@@ -529,3 +533,11 @@ transform = Transform3D(-0.195758, 3.09086e-08, 0.980652, -6.71257e-08, 1, -4.49
 transform = Transform3D(-0.965926, 3.09086e-08, 0.258819, 1.05424e-08, 1, -8.00771e-08, -0.258819, -7.462e-08, -0.965926, -74.6382, 0.5, -52.2724)
 
 [node name="DialogManager" parent="." instance=ExtResource("17_lxuew")]
+
+[node name="DialogTriggerrer" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
+script = ExtResource("18_5led8")
+Texts = Array[String](["Bien le bonjour !", "Comment allez vous ?"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogTriggerrer"]
+shape = SubResource("SphereShape3D_afikf")

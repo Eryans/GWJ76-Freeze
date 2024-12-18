@@ -1,13 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class DialogManager : Control
 {
-	public static event Action<bool> SetOpenDialog;
-	public static event Action<string[], int> SetDialogTexts;
+	public static event Action SetOpenDialog;
+	public static event Action<List<string>, int> SetDialogTexts;
 	private RichTextLabel dialogText;
 	private Button DialogButton;
-	private string[] textArray;
+	private List<string> textArray;
 	private int currentTextIndex = 0;
 
 	public override void _Ready()
@@ -19,20 +20,20 @@ public partial class DialogManager : Control
 		SetOpenDialog += SetDialogOpenOrClose;
 		SetDialogTexts += SetDialogText;
 	}
-
-	public void SetDialogOpenOrClose(bool isOpen)
+	public static void InvokeOpenDialog()
 	{
-		if (isOpen)
-		{
-			Visible = true;
-		}
-		else
-		{
-			CloseDialog();
-		}
+		SetOpenDialog?.Invoke();
+	}
+	public static void InvokeSetDialogText(List<string> texts, int index = 0)
+	{
+		SetDialogTexts?.Invoke(texts, index);
+	}
+	public void SetDialogOpenOrClose()
+	{
+		Visible = true;
 	}
 
-	public void SetDialogText(string[] texts, int index = 0)
+	public void SetDialogText(List<string> texts, int index = 0)
 	{
 		textArray = texts;
 		currentTextIndex = index;
@@ -47,8 +48,8 @@ public partial class DialogManager : Control
 
 	public void NextDialogOrClose()
 	{
-		DialogButton.Text = textArray.Length > 1 ? "next" : "close";
-		if (currentTextIndex < textArray.Length - 1)
+		DialogButton.Text = currentTextIndex == textArray.Count - 1 ? "next" : "close";
+		if (currentTextIndex < textArray.Count - 1)
 		{
 			currentTextIndex++;
 			dialogText.Text = textArray[currentTextIndex];
