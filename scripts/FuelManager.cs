@@ -16,7 +16,6 @@ public partial class FuelManager : Node
     public override void _Process(double delta)
     {
         FuelAmount -= FuelAmount > 0 ? (float)delta : 0;
-        GD.Print(FuelAmount);
         if (FuelAmount <= 0)
         {
             NoMoreFuel?.Invoke();
