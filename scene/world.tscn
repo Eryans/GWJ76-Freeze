@@ -1,27 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://chc8nd74ie25"]
+[gd_scene load_steps=10 format=3 uid="uid://chc8nd74ie25"]
 
+[ext_resource type="PackedScene" uid="uid://bwef7i8ifo2i6" path="res://level/freezemap.blend" id="1_pvnso"]
 [ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_q2mbb"]
 [ext_resource type="PackedScene" uid="uid://b60ej4sty64oc" path="res://scene/player.tscn" id="2_iwe2a"]
 [ext_resource type="PackedScene" uid="uid://l4jjv8eovgu3" path="res://scene/destination_point.tscn" id="3_jkoxr"]
 [ext_resource type="PackedScene" uid="uid://dfrsk6exohr5f" path="res://scene/gps.tscn" id="4_67rfh"]
-[ext_resource type="PackedScene" uid="uid://cfop08qyojgcu" path="res://level/rock.tscn" id="5_v7u8p"]
-[ext_resource type="PackedScene" uid="uid://crnhbt7t3fokl" path="res://level/rock_11.tscn" id="6_chf2f"]
-[ext_resource type="PackedScene" uid="uid://bfbvv7eetotbb" path="res://level/rock_2.tscn" id="6_tyojd"]
-[ext_resource type="PackedScene" uid="uid://evq1j5fdn58w" path="res://level/rock_10.tscn" id="7_0g2ev"]
-[ext_resource type="PackedScene" uid="uid://cfn0pa8vipri8" path="res://level/rock_3.tscn" id="7_o7n6b"]
-[ext_resource type="PackedScene" uid="uid://ce6kvls6shfdq" path="res://level/rock_4.tscn" id="8_bhy7c"]
-[ext_resource type="PackedScene" uid="uid://d1l5w66p54obg" path="res://level/rock_9.tscn" id="8_cjneb"]
-[ext_resource type="PackedScene" uid="uid://cxak0x7weo35b" path="res://level/rock_5.tscn" id="9_5nm1h"]
-[ext_resource type="PackedScene" uid="uid://0e6o5vqn835y" path="res://level/house.tscn" id="10_kj5oh"]
-[ext_resource type="PackedScene" uid="uid://cph44vr77ct2i" path="res://level/rock_6.tscn" id="10_lkqtk"]
-[ext_resource type="ArrayMesh" uid="uid://ct7fulia6xodf" path="res://Assets/Meshs/level_assets_gwj76_Cube_009.res" id="11_jrtpt"]
-[ext_resource type="PackedScene" uid="uid://byv4tubalgumd" path="res://scene/pinguin.tscn" id="16_sog0b"]
-[ext_resource type="PackedScene" uid="uid://b1o683ij6dbdh" path="res://scene/dialog_manager.tscn" id="17_lxuew"]
-[ext_resource type="Script" path="res://scripts/DialogTriggerrer.cs" id="18_5led8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f03cs"]
-albedo_color = Color(0.72549, 1, 1, 1)
-roughness = 0.39
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_eegtn"]
 
@@ -51,442 +34,45 @@ adjustment_enabled = true
 adjustment_contrast = 0.9
 adjustment_saturation = 1.25
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_afikf"]
-radius = 3.0
-
 [node name="World" type="Node3D"]
 
 [node name="Level" type="Node3D" parent="."]
 
-[node name="Floor" type="CSGBox3D" parent="Level"]
-material_override = SubResource("StandardMaterial3D_f03cs")
-use_collision = true
-size = Vector3(1500, 1, 1500)
+[node name="freezemap" parent="Level" instance=ExtResource("1_pvnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.1, 0)
 
-[node name="Rocks" type="Node3D" parent="Level"]
+[node name="StaticBody3D" parent="Level/freezemap/Rock _012" index="0" groups=["obstacles"]]
 
-[node name="Rock" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(4.8688, 0, 0, 0, 2.26, 0, 0, 0, 4.8688, 39.9539, 0, -23.5288)
+[node name="StaticBody3D" parent="Level/freezemap/wall _002" index="0" groups=["obstacles"]]
 
-[node name="Rock68" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(3.63699, 6.56766e-08, 3.23691, -1.4149e-07, 2.26, -5.38444e-08, -3.23691, -2.49935e-08, 3.63699, 133.807, 0, -67.8706)
+[node name="StaticBody3D" parent="Level/freezemap/Rock " index="0" groups=["obstacles"]]
 
-[node name="Rock70" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.81218, 4.93024e-09, -3.80154, -1.22385e-07, 1.95483, -4.6574e-08, 3.80154, 6.05826e-08, 1.81218, 127.019, -3.31149, -65.9065)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _001" index="0" groups=["obstacles"]]
 
-[node name="Rock71" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(0.73963, 3.73494, 0.5122, -0.288166, -0.367011, 4.45843, 3.06419, -0.936049, 0.295651, 127.467, 0.583482, -71.6817)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _002" index="0" groups=["obstacles"]]
 
-[node name="Rock69" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(2.23052, 4.02786e-08, 1.98516, -8.67739e-08, 1.38603, -3.30221e-08, -1.98516, -1.53282e-08, 2.23052, 132.722, 0, -61.3593)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _003" index="0" groups=["obstacles"]]
 
-[node name="Rock54" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.92814, -9.08528e-08, -4.47773, 1.95728e-07, 2.26298, -1.28821e-07, 4.47773, -5.97961e-08, 1.92814, -139.257, 0, -81.9519)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _004" index="0" groups=["obstacles"]]
 
-[node name="Rock55" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(4.14556, 5.18074e-08, 2.55336, -1.11611e-07, 2.26, -3.16142e-08, -2.55336, -1.46747e-08, 4.14556, -181.333, 0, -101.022)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _005" index="0" groups=["obstacles"]]
 
-[node name="Rock56" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(0.48805, 9.829e-08, 4.84428, -2.1175e-07, 2.26, -1.91489e-07, -4.84428, -8.88851e-08, 0.48805, -139.142, 0, -125.992)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _006" index="0" groups=["obstacles"]]
 
-[node name="Rock72" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(2.55628, -1.14046e-08, -0.562081, 2.45693e-08, 1.21492, -2.66931e-09, 0.562081, -1.23903e-09, 2.55628, 24.9887, -4.7217e-07, -183.441)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _007" index="0" groups=["obstacles"]]
 
-[node name="Rock73" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(0.185431, 5.29021e-08, 2.60731, -1.13969e-07, 1.21332, -1.06152e-07, -2.60731, -4.92734e-08, 0.185431, 3.49317, 5.16091e-07, -171.07)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _008" index="0" groups=["obstacles"]]
 
-[node name="Rock74" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-1.95917, 3.51086e-08, 1.73035, -7.56358e-08, 1.21332, -1.99895e-07, -1.73035, -9.27872e-08, -1.95917, 5.8235, -4.3921e-08, -197.288)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _009" index="0" groups=["obstacles"]]
 
-[node name="Rock76" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.25748, 0.202917, 1.56325, 1.29211, 0.430445, -1.2987, -0.982494, 0.825804, 0.292818, 7.07439, 0.424004, -196.92)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _010" index="0" groups=["obstacles"]]
 
-[node name="Rock77" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-2.39933, -2.10435e-08, -1.03714, 4.53349e-08, 1.21332, -2.19135e-07, 1.03714, -1.01718e-07, -2.39933, 21.8959, -1.49012e-08, -213.603)
+[node name="StaticBody3D" parent="Level/freezemap/Rock _011" index="0" groups=["obstacles"]]
 
-[node name="Rock78" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-0.354338, 0.83369, 0.929917, 1.29211, 0.430445, -1.2987, -1.55596, 0.167598, -1.29025, 22.7609, 0.424004, -214.579)
-
-[node name="Rock57" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-0.0483508, 9.87827e-08, 4.86857, -2.12812e-07, 2.26, -2.14936e-07, -4.86857, -9.97686e-08, -0.0483508, -66.8149, 0, -126.853)
-
-[node name="Rock75" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(2.81512, 6.91248e-08, 0.586058, -1.25685e-07, 1.33473, -1.26939e-07, -0.586058, 4.57952e-08, 2.81512, -61.0361, -0.959, -124.225)
-
-[node name="Rock48" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(4.55884, 3.4685e-08, 1.70947, -7.47232e-08, 2.26, -1.35492e-08, -1.70947, -6.28926e-09, 4.55884, -26.7484, 0, -154.573)
-
-[node name="Rock49" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(4.5423, 3.45592e-08, 1.70327, -7.44523e-08, 2.2518, -1.35001e-08, -1.70327, -6.26645e-09, 4.5423, 147.731, 0, -185.933)
-
-[node name="Rock80" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-0.297508, 9.82441e-08, 4.84202, -2.11651e-07, 2.2518, -2.25055e-07, -4.84202, -1.04466e-07, -0.297508, 62.4256, 0, -212.522)
-
-[node name="Rock6" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.03927, 4.79307, -4.24747, -6.34069, 1.37484, 0, 0.900058, 4.15101, 4.90445, -31.3697, 0, 26.5596)
-
-[node name="Rock23" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.97153, 9.09258, -4.05239, -9.91764, 2.15043, 1.85677e-07, 0.85872, 3.96036, 9.30387, -98.3879, 0, -46.2714)
-
-[node name="Rock7" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(0.638226, 2.94346, -9.32544, -9.5772, 2.07661, -1.6543e-07, 1.9761, 9.11366, 3.01185, -53.2353, 0, -22.4495)
-
-[node name="Rock13" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-0.240948, -1.11124, -9.73356, -9.5772, 2.07661, -3.73255e-07, 2.06259, 9.51252, -1.13706, 21.6605, 0, -123.396)
-
-[node name="Rock2" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6991, 0, 0)
-skeleton = NodePath("../../..")
-
-[node name="Rock84" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(3.66056, 0, 1.93851, 0, 2.96419, 0, -3.1644, 0, 2.24246, 47.9135, 1.56898, -88.621)
-skeleton = NodePath("../../..")
-
-[node name="Rock85" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(-2.28393, 0, 1.95422, 0, 2.40344, 0, -3.19004, 0, -1.39913, 50.1537, -0.12146, -95.3022)
-skeleton = NodePath("../../..")
-
-[node name="Rock86" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(0.831871, -0.533655, -3.4524, 1.62132, 3.36709, -0.373861, 5.46726, -0.917316, 0.636169, 35.188, -0.12146, -95.3022)
-skeleton = NodePath("../../..")
-
-[node name="Rock3" parent="Level/Rocks" instance=ExtResource("7_o7n6b")]
-transform = Transform3D(7.62326, 3.77038e-08, 2.71992, -1.18891e-07, 2.56682, -2.05746e-08, -2.71992, -6.52477e-09, 7.62326, 7.79121, 0, 43.7363)
-skeleton = NodePath("../../..")
-
-[node name="Rock4" parent="Level/Rocks" instance=ExtResource("8_bhy7c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.3141)
-skeleton = NodePath("../../..")
-
-[node name="Rock5" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(3.38505, -1.55542e-07, -3.55838, 1.55542e-07, 4.91127, -6.67134e-08, 3.55838, -6.67134e-08, 3.38505, 30.0466, 0, 26.5033)
-skeleton = NodePath("../../..")
-
-[node name="Rock47" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(4.89191, -1.90464e-08, -0.43573, 1.90464e-08, 4.91127, -8.46573e-10, 0.43573, -8.46573e-10, 4.89191, -43.3888, 0, -277.862)
-skeleton = NodePath("../../..")
-
-[node name="Rock21" parent="Level/Rocks" instance=ExtResource("7_o7n6b")]
-transform = Transform3D(-4.77269, 2.00678e-08, 6.53708, -3.53367e-07, 2.56682, -3.36342e-07, -6.53708, -1.53403e-07, -4.77269, 185.596, 2.16774e-07, -97.3011)
-skeleton = NodePath("../../..")
-
-[node name="Rock22" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(3.68454, 1.40796e-07, 3.22103, -1.40796e-07, 4.89396, -5.28655e-08, -3.22103, -5.28655e-08, 3.68454, 84.7156, -2.16774e-07, -130.592)
-skeleton = NodePath("../../..")
-
-[node name="Rock11" parent="Level/Rocks" instance=ExtResource("6_chf2f")]
-transform = Transform3D(1.10114, 0, 1.16573, 0, 1.60357, 0, -1.16573, 0, 1.10114, -117.903, 0, -163.468)
-skeleton = NodePath("../../..")
-
-[node name="Rock10" parent="Level/Rocks" instance=ExtResource("7_0g2ev")]
-transform = Transform3D(0.943246, 7.48409e-09, 0.332095, -1.45163e-08, 0.515563, -2.4808e-09, -0.332095, -1.27901e-09, 0.943246, 68.3831, 0, 13.4905)
-skeleton = NodePath("../../..")
-
-[node name="Rock9" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.067075, 2.24852e-08, 0.997747, -4.36129e-08, 0.515563, -4.66433e-08, -0.997747, -2.40476e-08, -0.067075, 86.0604, 0, -13.9557)
-skeleton = NodePath("../../..")
-
-[node name="Rock12" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.657992, -1.69701e-08, -0.753023, 3.29157e-08, 0.515563, -1.49496e-08, 0.753023, -7.70747e-09, 0.657992, 66.9875, 0, -58.1489)
-skeleton = NodePath("../../..")
-
-[node name="Rock19" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.988883, -3.35087e-09, -0.148689, 6.49942e-09, 0.515563, -4.85902e-10, 0.148689, -2.50517e-10, 0.988883, 112.905, -7.66098e-07, 3.87253)
-skeleton = NodePath("../../..")
-
-[node name="Rock20" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.876726, -1.08395e-08, -0.480988, 2.10247e-08, 0.515563, -8.20342e-08, 0.480988, -4.22939e-08, -0.876726, 160.162, 7.66098e-07, -5.26807)
-skeleton = NodePath("../../..")
-
-[node name="Rock8" parent="Level/Rocks" instance=ExtResource("10_lkqtk")]
-transform = Transform3D(1.66302, 3.66472e-08, 1.34582, -3.3193e-08, 2.13937, -1.72394e-08, -1.34582, -7.47995e-09, 1.66302, -4.17258, 0, -67.3612)
-skeleton = NodePath("../..")
-
-[node name="Rock64" parent="Level/Rocks" instance=ExtResource("10_lkqtk")]
-transform = Transform3D(-2.03059, 5.26427e-08, 0.673482, -3.80391e-09, 2.13937, -1.78693e-07, -0.673482, -1.70805e-07, -2.03059, -174.686, 0, -183.458)
-skeleton = NodePath("../../..")
-
-[node name="Rock14" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(2.55825, 0, 0, 0, 2.55825, 0, 0, 0, 2.55825, -102.799, 0.500015, -105.721)
-skeleton = NodePath("../..")
-
-[node name="Rock79" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(2.55825, 0, 0, 0, 2.55825, 0, 0, 0, 2.55825, 54.8874, 0.500015, -212.076)
-skeleton = NodePath("../..")
-
-[node name="Rock63" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(1.31214, 2.37727e-08, 0.543856, -2.37727e-08, 1.42039, -4.73149e-09, -0.543856, -4.73149e-09, 1.31214, -108.225, 0.500015, -250.053)
-skeleton = NodePath("../..")
-
-[node name="Rock59" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(0.853878, 1.05412e-07, 2.41154, -1.05412e-07, 2.55825, -7.45006e-08, -2.41154, -7.45006e-08, 0.853878, -47.8275, 0.500015, -202.324)
-skeleton = NodePath("../..")
-
-[node name="Rock58" parent="Level/Rocks" instance=ExtResource("9_5nm1h")]
-transform = Transform3D(3.34909, 1.22083e-07, 2.79293, -1.22083e-07, 4.36083, -4.42247e-08, -2.79293, -4.42247e-08, 3.34909, -50.4836, 0.500015, -38.3607)
-skeleton = NodePath("../..")
-
-[node name="Rock15" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(3.76596, 0, 0, 0, 3.76596, 0, 0, 0, 3.76596, -27.3782, 0.5, -112.518)
-
-[node name="Rock16" parent="Level/Rocks" instance=ExtResource("7_o7n6b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0854, 0.5, 17.6001)
-skeleton = NodePath("../..")
-
-[node name="Rock17" parent="Level/Rocks" instance=ExtResource("8_bhy7c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5462, 0.499985, -161.014)
-skeleton = NodePath("../..")
-
-[node name="Rock87" parent="Level/Rocks" instance=ExtResource("8_bhy7c")]
-transform = Transform3D(1.47739, 0, 0, 0, 5.01189, 0, 0, 0, 3.47746, 39.5427, 0.499979, -88.5495)
-skeleton = NodePath("../..")
-
-[node name="Rock88" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(2.05959, -0.106473, 2.68699, 3.13997, 2.10982, -0.819618, -3.06751, 2.08817, 0.965122, 84.6283, -0.2423, -227.018)
-skeleton = NodePath("../../..")
-
-[node name="Rock89" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(-3.38904, -0.0863313, 1.21776, 1.31286, 1.7107, 1.49243, -1.49927, 1.69314, -1.44581, 84.0164, 3.48215, -233.222)
-skeleton = NodePath("../../..")
-
-[node name="Rock90" parent="Level/Rocks" instance=ExtResource("6_tyojd")]
-transform = Transform3D(2.93017, -0.982866, -2.88574, -2.05189, 2.81229, -1.73973, 4.53367, 1.90805, 1.07771, 70.3254, -1.15866, -229.231)
-skeleton = NodePath("../../..")
-
-[node name="Rock91" parent="Level/Rocks" instance=ExtResource("8_bhy7c")]
-transform = Transform3D(1.35155, -0.180026, 1.41673, 0.458131, 3.56731, -2.20319, -0.393966, 3.5307, 2.29827, 77.0379, -3.64427, -225.491)
-skeleton = NodePath("../..")
-
-[node name="Rock18" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.990296, 0, -0.138965, 0, 1, 0, 0.138965, 0, -0.990296, -121.744, 0.500015, -45.4723)
-skeleton = NodePath("../../..")
-
-[node name="Rock24" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.858118, 0, 0.513451, 0, 1, 0, -0.513451, 0, -0.858118, -168.728, 0.500015, -55.2413)
-skeleton = NodePath("../../..")
-
-[node name="Rock25" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.496004, -4.06001e-08, 0.868319, -4.40298e-08, 1, 2.16062e-08, -0.868319, -2.75152e-08, -0.496004, -204.8, 0.500016, -89.993)
-skeleton = NodePath("../../..")
-
-[node name="Rock26" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.158951, -4.06001e-08, 0.987286, -2.0712e-08, 1, 4.44575e-08, -0.987286, -2.75152e-08, 0.158951, -213.135, 0.500014, -137.253)
-skeleton = NodePath("../../..")
-
-[node name="Rock27" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.253369, -4.34138e-08, 0.967369, -4.83594e-08, 1, 3.22121e-08, -0.967369, -3.86199e-08, -0.253369, -213.873, 0.500016, -168.804)
-skeleton = NodePath("../../..")
-
-[node name="Rock28" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.410002, -4.34139e-08, 0.912084, -1.74248e-08, 1, 5.54313e-08, -0.912084, -3.86199e-08, 0.410002, -209.644, 0.500014, -216.607)
-skeleton = NodePath("../../..")
-
-[node name="Rock29" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.0992331, -4.24708e-08, 0.995063, -4.957e-08, 1, 4.76248e-08, -0.995063, -5.40513e-08, 0.0992331, -198.327, 0.500014, -268.43)
-skeleton = NodePath("../../..")
-
-[node name="Rock30" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.701867, -4.24708e-08, 0.712307, -8.69228e-09, 1, 6.81891e-08, -0.712307, -5.40513e-08, 0.701867, -177.721, 0.500013, -311.77)
-skeleton = NodePath("../../..")
-
-[node name="Rock31" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.961006, -6.13255e-09, 0.276526, -1.81617e-08, 1, 8.52941e-08, -0.276526, -8.69905e-08, 0.961006, -135.423, 0.500014, -338.597)
-skeleton = NodePath("../../..")
-
-[node name="Rock32" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.921666, -6.13254e-09, -0.387982, 3.94029e-08, 1, 7.77968e-08, 0.387982, -8.69905e-08, 0.921666, -87.5329, 0.500014, -335.516)
-skeleton = NodePath("../../..")
-
-[node name="Rock33" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.999849, 5.32253e-09, 0.0173475, -6.83266e-09, 1, 8.6992e-08, -0.0173475, -8.70975e-08, 0.999849, -56.7021, 0.500018, -328.77)
-skeleton = NodePath("../../..")
-
-[node name="Rock34" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.789212, 5.32254e-09, -0.614119, 4.92877e-08, 1, 7.20071e-08, 0.614119, -8.70975e-08, 0.789212, -11.257, 0.500019, -313.353)
-skeleton = NodePath("../../..")
-
-[node name="Rock35" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.995806, -1.0009e-08, 0.0914845, -1.00733e-08, 1, -2.40814e-10, -0.0914845, -1.16137e-09, -0.995806, 202.853, 0.500012, -251.047)
-skeleton = NodePath("../../..")
-
-[node name="Rock36" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.920688, 3.53035e-08, -0.390297, 3.95041e-08, 1, -2.73501e-09, 0.390297, -1.79364e-08, -0.920688, 156.926, 0.500013, -239.525)
-skeleton = NodePath("../../..")
-
-[node name="Rock37" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.993773, -1.08595e-08, 0.111417, -1.09446e-08, 1, -1.5196e-10, -0.111417, -1.37042e-09, -0.993773, 107.589, 0.500016, -230.884)
-skeleton = NodePath("../../..")
-
-[node name="Rock60" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.54455, -3.9614e-08, 0.838727, -4.27363e-08, 1, 1.94842e-08, -0.838727, -2.5234e-08, -0.54455, 310.418, 0.500013, -173.705)
-skeleton = NodePath("../../..")
-
-[node name="Rock61" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.87644, 1.60933e-09, 0.481509, 1.39623e-09, 1, -8.00878e-10, -0.481509, -2.9635e-11, -0.87644, 272.94, 0.500013, -202.644)
-skeleton = NodePath("../../..")
-
-[node name="Rock62" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.527637, -3.99763e-08, 0.849469, -4.32058e-08, 1, 2.02235e-08, -0.849469, -2.60314e-08, -0.527637, 235.614, 0.500014, -236.044)
-skeleton = NodePath("../../..")
-
-[node name="Rock38" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.703654, -1.08595e-08, 0.710541, -8.6151e-09, 1, 6.75183e-09, -0.710541, -1.37043e-09, -0.703654, 64.5042, 0.500016, -252.019)
-skeleton = NodePath("../../..")
-
-[node name="Rock81" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.390766, 0.242902, 0.887862, -0.47784, 0.877938, -0.0298793, -0.786746, -0.412581, 0.459136, 67.7784, 21.3063, -211.255)
-skeleton = NodePath("../../..")
-
-[node name="Rock82" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.289264, 0.101241, 0.95188, -0.0521932, 0.994581, -0.0899221, -0.955825, -0.0236702, 0.292981, 52.0756, 34.4386, -169.483)
-skeleton = NodePath("../../..")
-
-[node name="Rock83" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.00626692, 0.0903693, 0.995888, 0.278803, 0.956259, -0.0885276, -0.960327, 0.278212, -0.0192026, 43.0597, 27.5748, -119.831)
-skeleton = NodePath("../../..")
-
-[node name="Rock39" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.930698, -2.14873e-08, 0.365786, -2.20634e-08, 1, 2.60514e-09, -0.365786, -5.64591e-09, -0.930698, 38.5862, 0.500018, -270.027)
-skeleton = NodePath("../../..")
-
-[node name="Rock40" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.494882, -2.14873e-08, 0.868959, -1.55397e-08, 1, 1.58776e-08, -0.868959, -5.6459e-09, -0.494882, 2.47274, 0.500017, -301.631)
-skeleton = NodePath("../../..")
-
-[node name="Rock41" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.0771014, 4.36267e-08, -0.997022, 3.75068e-08, 1, 4.66574e-08, 0.997022, -4.09926e-08, 0.0771014, 367.525, 0.500009, -82.9505)
-skeleton = NodePath("../../..")
-
-[node name="Rock42" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.56583, 4.36268e-08, -0.824521, 5.84846e-08, 1, 1.27763e-08, 0.824521, -4.09926e-08, -0.56583, 354.853, 0.500012, -36.6648)
-skeleton = NodePath("../../..")
-
-[node name="Rock43" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.897489, 1.36395e-08, -0.441035, 1.32039e-08, 1, 4.05676e-09, 0.441035, -2.1825e-09, -0.897489, 317.925, 0.500016, -2.82467)
-skeleton = NodePath("../../..")
-
-[node name="Rock44" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.975488, 1.36395e-08, 0.220051, 1.28249e-08, 1, -5.13038e-09, -0.220051, -2.1825e-09, -0.975488, 270.238, 0.500016, 2.55496)
-skeleton = NodePath("../../..")
-
-[node name="Rock50" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.216644, -7.25715e-08, 0.97625, -2.86776e-08, 1, 8.07009e-08, -0.97625, -4.54799e-08, 0.216644, 275.878, 0.500011, -119.403)
-skeleton = NodePath("../../..")
-
-[node name="Rock51" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.908945, -3.60384e-08, 0.416915, 4.2197e-09, 1, 7.72408e-08, -0.416915, -6.84484e-08, 0.908945, 302.532, 0.500011, -159.765)
-skeleton = NodePath("../../..")
-
-[node name="Rock52" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.797435, 3.09636e-08, -0.603402, 2.03012e-08, 1, 7.81442e-08, 0.603402, -7.45649e-08, 0.797435, 332.14, 0.500014, -170.407)
-skeleton = NodePath("../../..")
-
-[node name="Rock53" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(0.241989, 3.09636e-08, -0.970278, 6.48558e-08, 1, 4.80872e-08, 0.970278, -7.45649e-08, 0.241989, 358.384, 0.500016, -130.229)
-skeleton = NodePath("../../..")
-
-[node name="Rock45" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.981255, 2.38137e-09, -0.19271, 2.34924e-09, 1, 3.95216e-10, 0.19271, -6.49198e-11, -0.981255, 238.702, 0.500019, 1.32953)
-skeleton = NodePath("../../..")
-
-[node name="Rock46" parent="Level/Rocks" instance=ExtResource("8_cjneb")]
-transform = Transform3D(-0.884816, 2.38138e-09, 0.465938, 2.07684e-09, 1, -1.16696e-09, -0.465938, -6.49023e-11, -0.884816, 191.255, 0.500019, -5.86528)
-skeleton = NodePath("../../..")
-
-[node name="Rock65" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(3.90941, 0, 0, 0, 3.90941, 0, 0, 0, 3.90941, -143.82, 0.500004, -245.954)
-
-[node name="Rock66" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(1.74834, 0, 3.49668, 0, 3.90941, 0, -3.49668, 0, 1.74834, -118.138, -0.417637, -264.718)
-
-[node name="Rock67" parent="Level/Rocks" instance=ExtResource("5_v7u8p")]
-transform = Transform3D(-2.50519, -4.06326, 2.07084, 2.64959, 0.62628, 4.43418, -3.71189, 3.18938, 1.76754, -118.138, 20.5102, -264.718)
-
-[node name="Town" type="Node3D" parent="Level"]
-
-[node name="Node3D" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.47177, 0, 0)
-
-[node name="Node3D2" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.47177, 0, 9)
-
-[node name="Node3D3" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(1.02408, 0, -0.591251, 0, 1.1825, 0, 0.591251, 0, 1.02408, 16.4718, 0, 3)
-
-[node name="Node3D13" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(1.42023, 0, 0.684736, 0, 1, 0, -0.819972, 0, 1.186, 5.47177, 1, -11)
-
-[node name="Node3D14" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 18.4718, 0, -7)
-
-[node name="Node3D15" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1.36046, 0, -0.5, 0, 0.866025, 18.4718, 0, -19)
-
-[node name="Node3D4" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 14.4718, 0, 11)
-
-[node name="Node3D16" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.969231, 0, 0.246153, 0, 1.36046, 0, -0.246153, 0, 0.969231, 27.6728, 1.36046, -1.36247)
-
-[node name="Node3D17" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.988279, 0, -0.152658, 0, 1, 0, 0.152658, 0, 0.988279, 30.2101, 0, -11.3425)
-
-[node name="Node3D18" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.503472, 0, 0.864011, 0, 1, 0, -0.864011, 0, 0.503472, 27.4718, 0, -19)
-
-[node name="Node3D19" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(1.03433, 0, 0.215114, 0, 1, 0, -0.317528, 0, 0.70072, 23.4718, 0, 11)
-
-[node name="Node3D5" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.866026, 0, -0.5, 0, 0.833231, 0, 0.5, 0, -0.866026, -8.52823, 0, 11)
-
-[node name="Node3D6" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -18.5282, 1, 4)
-
-[node name="Node3D7" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -22.5282, 0, -6)
-
-[node name="Node3D8" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.965926, 0, -0.258819, 0, 1.36046, 0, 0.258819, 0, -0.965926, -30.5282, 1.36046, 1)
-
-[node name="Node3D9" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.393965, 0, -0.547921, 0, 1, 0, 0.682368, 0, -0.316343, -26.5282, 0, 13)
-
-[node name="Node3D10" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -13.5282, 1, 25)
-
-[node name="Node3D11" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1.36046, 0, 0.965926, 0, 0.258819, -1.52824, 1.36046, 25)
-
-[node name="Node3D12" parent="Level/Town" instance=ExtResource("10_kj5oh")]
-transform = Transform3D(0.91873, 0, -0.91873, 0, 1, 0, 0.91873, 0, 0.91873, 5.47176, 0, 19)
-
-[node name="LevelAssetsGwj76Cube009" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(2.23, 0, 0, 0, 2.23, 0, 0, 0, 2.23, 23.6986, 1.53519, -12.0034)
-mesh = ExtResource("11_jrtpt")
-
-[node name="LevelAssetsGwj76Cube013" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(4.07753, 0, 0, 0, 2.01291, 0, 0, 0, 5.53967, 46.8528, 1.53519, 2.08699)
-mesh = ExtResource("11_jrtpt")
-
-[node name="LevelAssetsGwj76Cube014" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(3.12526, 5.65134e-08, 3.55809, -1.14479e-07, 2.01291, -5.65511e-08, -2.61897, -2.05485e-08, 4.24593, 42.3635, 1.53519, -51.2456)
-mesh = ExtResource("11_jrtpt")
-
-[node name="LevelAssetsGwj76Cube010" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(1.69845, -3.05748e-08, -0.725429, 2.75129e-08, 2.01291, -5.68659e-09, 0.629422, -5.4831e-09, 1.95752, 25.9341, 1.53519, 6.43964)
-mesh = ExtResource("11_jrtpt")
-
-[node name="LevelAssetsGwj76Cube011" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(1.69845, -3.05748e-08, -0.725429, 2.75129e-08, 2.01291, -5.68659e-09, 0.629422, -5.4831e-09, 1.95752, 2.46113, 1.53519, 23.6531)
-mesh = ExtResource("11_jrtpt")
-
-[node name="LevelAssetsGwj76Cube012" type="MeshInstance3D" parent="Level/Town"]
-transform = Transform3D(1.5016, -7.01511e-08, -1.72348, 8.66998e-08, 2.01291, -3.74559e-08, 1.98346, -3.48783e-08, 1.30478, -22.3531, 1.53519, 12.5873)
-mesh = ExtResource("11_jrtpt")
+[node name="StaticBody3D" parent="Level/freezemap/wall _001" index="0" groups=["obstacles"]]
 
 [node name="Player" parent="." groups=["test"] instance=ExtResource("2_iwe2a")]
-transform = Transform3D(0.7762, 0, 0.630486, 0, 1, 0, -0.630486, 0, 0.7762, -2.57863, 3.12888, 0)
+transform = Transform3D(-0.103035, 0, -0.994677, 0, 1, 0, 0.994677, 0, -0.103035, 254.421, 3.12888, -401)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.943431, -0.0281862, 0.33037, -0.331381, -0.0465029, 0.94235, -0.0111983, -0.998521, -0.0532126, 0, 18, 0)
@@ -509,10 +95,15 @@ margin = 3.0
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
 
 [node name="DestinationPoint" parent="." instance=ExtResource("3_jkoxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 333.802, 0, -80.9025)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 247.802, 0, -415.902)
 
 [node name="DestinationPoint4" parent="." instance=ExtResource("3_jkoxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -152.759, 0, -277.724)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 496.241, 0, -475.977)
+PointIndex = 2
+
+[node name="DestinationPoint5" parent="." instance=ExtResource("3_jkoxr")]
+transform = Transform3D(3.4, 0, 0, 0, 3.4, 0, 0, 0, 3.4, 399.241, 0, -277.373)
+PointIndex = 1
 
 [node name="GPS" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_67rfh")]
 player = NodePath("../Player")
@@ -520,24 +111,4 @@ player = NodePath("../Player")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6emew")
 
-[node name="Node3D" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(-0.707107, 3.09086e-08, 0.707107, -3.09086e-08, 1, -7.462e-08, -0.707107, -7.462e-08, -0.707107, -70.2329, 0.5, -50.8853)
-
-[node name="Node3D4" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(-0.707107, 3.09086e-08, 0.707107, -3.09086e-08, 1, -7.462e-08, -0.707107, -7.462e-08, -0.707107, -44.2329, 0.5, -88.8853)
-
-[node name="Node3D2" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(-0.195758, 3.09086e-08, 0.980652, -6.71257e-08, 1, -4.49181e-08, -0.980652, -7.462e-08, -0.195758, -67.1558, 0.5, -48.2378)
-
-[node name="Node3D3" parent="." instance=ExtResource("16_sog0b")]
-transform = Transform3D(-0.965926, 3.09086e-08, 0.258819, 1.05424e-08, 1, -8.00771e-08, -0.258819, -7.462e-08, -0.965926, -74.6382, 0.5, -52.2724)
-
-[node name="DialogManager" parent="." instance=ExtResource("17_lxuew")]
-
-[node name="DialogTriggerrer" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
-script = ExtResource("18_5led8")
-Texts = Array[String](["Bien le bonjour !", "Comment allez vous ?"])
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogTriggerrer"]
-shape = SubResource("SphereShape3D_afikf")
+[editable path="Level/freezemap"]

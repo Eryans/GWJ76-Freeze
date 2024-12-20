@@ -19,12 +19,12 @@ public partial class Player : CharacterBody3D
 	public float BrakeForce { get; private set; } = .2f;
 	public float Acceleration { get; private set; } = 0.0f;
 	public float CurrentRotationForce { get; private set; } = 0.0f;
-	private bool canAccelerate = true;
+	private bool hasBounced = true;
 	private Timer canAccelerateTimer = new();
 	public override void _Ready()
 	{
 		AddChild(canAccelerateTimer);
-		canAccelerateTimer.Timeout += () => canAccelerate = true;
+		canAccelerateTimer.Timeout += () => hasBounced = true;
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -32,7 +32,7 @@ public partial class Player : CharacterBody3D
 		Acceleration = Mathf.Clamp(Acceleration, -MaxAcceleration / 2, MaxAcceleration);
 		CurrentRotationForce = Mathf.Clamp(CurrentRotationForce, -MaxRotationForce, MaxRotationForce);
 
-		if (Input.IsActionPressed("accelerate") && canAccelerate)
+		if (Input.IsActionPressed("accelerate") && hasBounced)
 		{
 			Acceleration += AccelerationForce;
 		}
@@ -50,7 +50,8 @@ public partial class Player : CharacterBody3D
 			CurrentRotationForce = Mathf.Lerp(CurrentRotationForce, 0, BrakeForce * (float)delta); ;
 		}
 
-		velocity = Transform.Basis * Vector3.Forward * Acceleration;
+		if (hasBounced)
+			velocity = velocity.Lerp(Transform.Basis * Vector3.Forward * Acceleration, (float)delta);
 
 		if (!IsOnFloor())
 		{
@@ -85,10 +86,16 @@ public partial class Player : CharacterBody3D
 			}
 			if (collision.GetCollider() is Node3D node)
 			{
-				if (node.IsInGroup("obstacles"))
+				if (node.IsInGroup("obstacles") && hasBounced)
 				{
-					Acceleration = -Acceleration / 2;
-					velocity = velocity.Bounce(collision.GetNormal());
+					Acceleration /= 2;
+					hasBounced = false;
+					canAccelerateTimer.Start(1f);
+					Vector3 bounceDirection = velocity.Bounce(collision.GetNormal());
+					velocity = bounceDirection.Normalized() * Acceleration;
+					Vector3 toLookAt = new(bounceDirection.X - GlobalPosition.X, GlobalPosition.Y, bounceDirection.Z - GlobalPosition.Z);
+					// Rotation = Rotation with { Y = Mathf.Atan2(toLookAt.X, toLookAt.Z) };
+
 				}
 			}
 

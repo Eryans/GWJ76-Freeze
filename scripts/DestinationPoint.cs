@@ -4,6 +4,8 @@ using System;
 [GlobalClass]
 public partial class DestinationPoint : Area3D
 {
+	[Export]
+	public int PointIndex { get; private set; }
 	public event Action<DestinationPoint> PointReachedByPlayer;
 	public bool isTargetToReach = false;
 	public override void _Ready()
@@ -13,7 +15,7 @@ public partial class DestinationPoint : Area3D
 
 	private void OnPointReachedByPlayer(Node3D body)
 	{
-		if (isTargetToReach)
+		if (body is Player && isTargetToReach)
 			PointReachedByPlayer?.Invoke(this);
 	}
 }
