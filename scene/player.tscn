@@ -22,7 +22,9 @@ size = Vector3(1.25, 2, 3.25)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_jk703")
-BrakeForce = 2.0
+MaxRotationForce = 0.025
+RotationForce = 0.05
+BrakeForce = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

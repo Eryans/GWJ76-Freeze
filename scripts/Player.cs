@@ -21,6 +21,7 @@ public partial class Player : CharacterBody3D
 	public float CurrentRotationForce { get; private set; } = 0.0f;
 	private bool hasBounced = true;
 	private Timer canAccelerateTimer = new();
+	public static event Action brake;
 	public override void _Ready()
 	{
 		AddChild(canAccelerateTimer);
@@ -46,6 +47,7 @@ public partial class Player : CharacterBody3D
 		}
 		if (Input.IsActionPressed("shift"))
 		{
+			brake?.Invoke();
 			Acceleration = Mathf.Lerp(Acceleration, 0, BrakeForce * (float)delta); ;
 			CurrentRotationForce = Mathf.Lerp(CurrentRotationForce, 0, BrakeForce * (float)delta); ;
 		}
@@ -93,9 +95,6 @@ public partial class Player : CharacterBody3D
 					canAccelerateTimer.Start(1f);
 					Vector3 bounceDirection = velocity.Bounce(collision.GetNormal());
 					velocity = bounceDirection.Normalized() * Acceleration;
-					Vector3 toLookAt = new(bounceDirection.X - GlobalPosition.X, GlobalPosition.Y, bounceDirection.Z - GlobalPosition.Z);
-					// Rotation = Rotation with { Y = Mathf.Atan2(toLookAt.X, toLookAt.Z) };
-
 				}
 			}
 
