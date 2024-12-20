@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://43xvoeg4oeqw"]
+
+[ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_eow2w"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_eegtn"]
+
+[node name="CameraOrigin" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54254, 0)
+script = ExtResource("1_eow2w")
+LerpWeight = 2.5
+RotationLerpWeight = 1.5
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 3.5, 0)
+collision_mask = 0
+shape = SubResource("SeparationRayShape3D_eegtn")
+spring_length = 8.0
+margin = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+unique_name_in_owner = true
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -35)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 1
