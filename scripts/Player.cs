@@ -25,7 +25,7 @@ public partial class Player : CharacterBody3D
 	public float Acceleration { get; private set; } = 0.0f;
 	public float CurrentRotationForce { get; private set; } = 0.0f;
 
-	private bool hasBounced = true;
+	private bool canBounce = true;
 	private bool isAlive = true;
 	private Timer canAccelerateTimer = new();
 	private Health health;
@@ -34,7 +34,7 @@ public partial class Player : CharacterBody3D
 	{
 		AddChild(canAccelerateTimer);
 		health = GetNode<Health>("Health");
-		canAccelerateTimer.Timeout += () => hasBounced = true;
+		canAccelerateTimer.Timeout += () => canBounce = true;
 		health.HealthDepleted += OnHealthDepleted;
 		PlayerSpawn?.Invoke(this);
 	}
@@ -46,7 +46,7 @@ public partial class Player : CharacterBody3D
 			Acceleration = Mathf.Clamp(Acceleration, -MaxAcceleration / 2, MaxAcceleration);
 			CurrentRotationForce = Mathf.Clamp(CurrentRotationForce, -MaxRotationForce, MaxRotationForce);
 
-			if (Input.IsActionPressed("accelerate") && hasBounced)
+			if (Input.IsActionPressed("accelerate") && canBounce)
 			{
 				Acceleration += AccelerationForce;
 			}
@@ -65,7 +65,7 @@ public partial class Player : CharacterBody3D
 				CurrentRotationForce = Mathf.Lerp(CurrentRotationForce, 0, BrakeForce * (float)delta); ;
 			}
 
-			if (hasBounced)
+			if (canBounce)
 				velocity = velocity.Lerp(Transform.Basis * Vector3.Forward * Acceleration, (float)delta);
 
 			if (!IsOnFloor())
@@ -101,11 +101,11 @@ public partial class Player : CharacterBody3D
 				}
 				if (collision.GetCollider() is Node3D node)
 				{
-					if (node.IsInGroup("obstacles") && hasBounced)
+					if (!node.IsInGroup("floor") && canBounce)
 					{
 						health.ChangeCurrentHealth(Math.Abs(Acceleration)); // Use absolute value here, else player could heal by hitting wall while going in reverse
 						Acceleration /= 2;
-						hasBounced = false;
+						canBounce = false;
 						canAccelerateTimer.Start(1f);
 						Vector3 bounceDirection = velocity.Bounce(collision.GetNormal());
 						velocity = bounceDirection.Normalized() * Acceleration;

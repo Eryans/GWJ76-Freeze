@@ -17,6 +17,7 @@ public partial class GameManager : Node
 	public override void _Ready()
 	{
 		InitGame();
+		GetTree().Root.MeshLodThreshold = 2.0f;
 	}
 	private void InitGame()
 	{

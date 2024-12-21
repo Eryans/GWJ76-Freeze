@@ -23,6 +23,7 @@ project/assembly_name="GWJ 76-FREEZE"
 
 obstacles=""
 destination_points="regroup all destination points on the map"
+floor=""
 
 [input]
 

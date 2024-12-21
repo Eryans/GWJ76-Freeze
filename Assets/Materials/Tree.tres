@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bdewr1h0s3bk1"]
+
+[ext_resource type="Texture2D" uid="uid://cyi2a4dxv78os" path="res://level/freezemap_Ucupaint Tree Color.png" id="1_n1onx"]
+
+[resource]
+resource_name = "Tree"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_n1onx")
+roughness = 0.25
