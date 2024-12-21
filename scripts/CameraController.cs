@@ -14,7 +14,7 @@ public partial class CameraController : Node3D
 	public override void _Ready()
 	{
 		camera = GetNode<Camera3D>("%Camera3D");
-		Player.brake += () =>
+		Player.Brake += () =>
 		{
 			Rotation = Rotation with { Y = Mathf.LerpAngle(Rotation.Y, Target.Rotation.Y, (float)GetPhysicsProcessDeltaTime()) };
 		};

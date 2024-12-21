@@ -10,6 +10,7 @@ public partial class Gps : Node3D
 	public override void _Ready()
 	{
 		GameManager.DestinationPointChanged += OnNewDestinationPoint;
+		Player.PlayerSpawn += (Player playerEntity) => { if (!IsInstanceValid(player)) { player = playerEntity; } };
 	}
 	public override void _Process(double delta)
 	{

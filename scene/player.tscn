@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b60ej4sty64oc"]
+[gd_scene load_steps=11 format=3 uid="uid://b60ej4sty64oc"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_jk703"]
 [ext_resource type="PackedScene" uid="uid://dnvauwgspnfc0" path="res://scene/ObstacleCollider.tscn" id="2_lrwpt"]
 [ext_resource type="Script" path="res://scripts/HurtBox.cs" id="3_hq7op"]
 [ext_resource type="Script" path="res://scripts/FuelManager.cs" id="4_ytyyy"]
+[ext_resource type="Script" path="res://scripts/Health.cs" id="5_ajj2e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vm1th"]
 size = Vector3(1, 1, 3)
@@ -65,3 +66,7 @@ shape = SubResource("BoxShape3D_n5pfn")
 
 [node name="FuelManager" type="Node" parent="."]
 script = ExtResource("4_ytyyy")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_ajj2e")
+MaxHealth = 50.0

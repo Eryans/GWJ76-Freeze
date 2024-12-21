@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://chc8nd74ie25"]
+[gd_scene load_steps=16 format=4 uid="uid://chc8nd74ie25"]
 
 [ext_resource type="PackedScene" uid="uid://bwef7i8ifo2i6" path="res://level/freezemap.blend" id="1_pvnso"]
 [ext_resource type="Material" uid="uid://chuybr5f4sqy2" path="res://Assets/Materials/Material.tres" id="2_5l5mh"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://l4jjv8eovgu3" path="res://scene/destination_point.tscn" id="3_jkoxr"]
 [ext_resource type="PackedScene" uid="uid://43xvoeg4oeqw" path="res://scene/camera.tscn" id="3_v6rp5"]
 [ext_resource type="PackedScene" uid="uid://dfrsk6exohr5f" path="res://scene/gps.tscn" id="4_67rfh"]
+[ext_resource type="PackedScene" uid="uid://dvobw3005037y" path="res://scene/ui_manager.tscn" id="7_aqw0p"]
+[ext_resource type="Script" path="res://scripts/GameManager.cs" id="8_j5edg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5petx"]
 
@@ -138,8 +140,16 @@ Target = NodePath("../Player")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 247.802, 0, -415.902)
 
 [node name="DestinationPoint4" parent="." instance=ExtResource("3_jkoxr")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 496.241, 0, -475.977)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 368.741, 0, -500.977)
 PointIndex = 2
+
+[node name="DestinationPoint6" parent="." instance=ExtResource("3_jkoxr")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 470.281, 0, -369.514)
+PointIndex = 3
+
+[node name="DestinationPoint7" parent="." instance=ExtResource("3_jkoxr")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 493.905, 0, -478.633)
+PointIndex = 4
 
 [node name="DestinationPoint5" parent="." instance=ExtResource("3_jkoxr")]
 transform = Transform3D(3.4, 0, 0, 0, 3.4, 0, 0, 0, 3.4, 399.241, 0, -277.373)
@@ -150,5 +160,10 @@ player = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6emew")
+
+[node name="UIManager" parent="." instance=ExtResource("7_aqw0p")]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("8_j5edg")
 
 [editable path="Level/freezemap"]

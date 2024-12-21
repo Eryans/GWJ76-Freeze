@@ -11,6 +11,7 @@ public partial class DestinationPoint : Area3D
 	public override void _Ready()
 	{
 		BodyEntered += OnPointReachedByPlayer;
+		if (!Engine.IsEditorHint()) Visible = false;
 	}
 
 	private void OnPointReachedByPlayer(Node3D body)

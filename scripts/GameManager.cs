@@ -1,20 +1,29 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
+[GlobalClass]
 public partial class GameManager : Node
 {
+	public static event Action ReachedLastPoint;
+	public static event Action<DestinationPoint> DestinationPointChanged;
+
 	private readonly List<DestinationPoint> destinationPoints = new();
 	private RandomNumberGenerator rng = new();
-
-	public static event Action<DestinationPoint> DestinationPointChanged;
-	public static event Action ReachedLastPoint;
+	private Player player;
+	private bool canRestartGame = false;
 
 	public override void _Ready()
 	{
+		InitGame();
+	}
+	private void InitGame()
+	{
 		GD.Randomize();
+		Player.GameOver += OnGameOver;
 		var tmpDestinationPoints = GetTree().GetNodesInGroup("destination_points");
-		foreach (DestinationPoint point in tmpDestinationPoints)
+		foreach (DestinationPoint point in tmpDestinationPoints.Cast<DestinationPoint>())
 		{
 			point.PointReachedByPlayer += OnPlayerReachedPoint;
 			destinationPoints.Add(point);
@@ -23,14 +32,21 @@ public partial class GameManager : Node
 		GD.Print(destinationPoints);
 		CallDeferred("SetNewDestination", 0);
 	}
-	public void OnPlayerReachedPoint(DestinationPoint newDestination)
+	public override void _Process(double delta)
 	{
-		if (newDestination.PointIndex > 0)
+		if (canRestartGame && Input.IsActionJustPressed("restart"))
 		{
-			DestinationPoint oldPoint = (DestinationPoint)destinationPoints[newDestination.PointIndex - 1];
-			oldPoint.isTargetToReach = false;
+			canRestartGame = false;
+			GetTree().ReloadCurrentScene();
 		}
-		SetNewDestination(newDestination.PointIndex + 1);
+	}
+	public void OnPlayerReachedPoint(DestinationPoint reachedPoint)
+	{
+		if (reachedPoint.PointIndex > 0)
+		{
+			reachedPoint.isTargetToReach = false;
+		}
+		SetNewDestination(reachedPoint.PointIndex + 1);
 	}
 	private void SetNewDestination(int pointIndex)
 	{
@@ -40,9 +56,13 @@ public partial class GameManager : Node
 			ReachedLastPoint?.Invoke();
 			return;
 		}
-		DestinationPoint newPoint = (DestinationPoint)destinationPoints[pointIndex];
+		DestinationPoint newPoint = destinationPoints[pointIndex];
 		newPoint.isTargetToReach = true;
 		GD.Print("New destination at point : " + newPoint.GlobalPosition);
 		DestinationPointChanged?.Invoke(newPoint);
+	}
+	private void OnGameOver()
+	{
+		canRestartGame = true;
 	}
 }
